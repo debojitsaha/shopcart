@@ -34,7 +34,7 @@ const Banner = () => {
           Buy Now
         </Button>
       </Box>
-      <Box>
+      <Box padding={"14px"}>
         <Image src={BannerImage} alt="Banner" />
       </Box>
     </Box>
