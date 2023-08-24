@@ -34,7 +34,7 @@ const Navbar = () => {
       boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.05)"}
     >
       {/* Left Nav Items */}
-      <Flex alignItems={"center"} gap={"12px"}>
+      <Flex alignItems={"center"} gap={"18px"}>
         <Flex fontWeight={600} alignItems={"center"} mr={"4"}>
           <Image src={Logo} alt="Logo" width={"40px"} />
           <Text fontSize={"2xl"}>ShopCart</Text>
@@ -60,7 +60,7 @@ const Navbar = () => {
       </Box>
 
       {/* Right Nav Items */}
-      <Flex ml={"auto"} gap={"12px"} alignItems={"center"} paddingRight={"6px"}>
+      <Flex ml={"auto"} gap={"18px"} alignItems={"center"} paddingRight={"6px"}>
         <Flex gap={"4px"} alignItems={"center"}>
           <BsCartCheck size="25px" />
           <Text fontWeight={600}>Cart</Text>
