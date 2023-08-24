@@ -13,12 +13,15 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { BsCartCheck, BsChevronDown } from "react-icons/bs";
+import { BsCartCheck } from "react-icons/bs";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 
-import "../styles/variables.scss"
+import "../styles/variables.scss";
+import { useGetAllCategories } from "../api/productServices";
+import { CapitalizeEachWord } from "../utils/Capitalize";
 
 const Navbar = () => {
+  const categories = useGetAllCategories();
   return (
     <Flex
       alignItems={"center"}
@@ -28,7 +31,7 @@ const Navbar = () => {
       zIndex={10}
       backgroundColor={"white"}
       border={"1px solid #E2E8F0"}
-      boxShadow= {"0px 2px 4px rgba(0, 0, 0, 0.05)"}
+      boxShadow={"0px 2px 4px rgba(0, 0, 0, 0.05)"}
     >
       {/* Left Nav Items */}
       <Flex alignItems={"center"} gap={"12px"}>
@@ -36,29 +39,16 @@ const Navbar = () => {
           <Image src={Logo} alt="Logo" width={"40px"} />
           <Text fontSize={"2xl"}>ShopCart</Text>
         </Flex>
-        <Box>
-          <Menu>
-            <MenuButton
-              color={"#000000"}
-              _hover={{ color: "#26283E", bg: "transparent" }}
-              _active={{ bg: "transparent" }}
-              bg={"transparent"}
-              as={Button}
-              p={0}
-              cursor={"pointer"}
-              rightIcon={<BsChevronDown />}
+        {categories.data && categories.data.map((category: string, i: number) => {
+          return (
+            <Box
+              key={i}
+              _hover={{ boxShadow: "inset 0 -2px 0 #26283E", cursor: "pointer" }}
             >
-              <Text>Categories</Text>
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Men</MenuItem>
-              <MenuItem>Women</MenuItem>
-            </MenuList>
-          </Menu>
-        </Box>
-        <Box>
-          <Text fontWeight={600}>Deals</Text>
-        </Box>
+              <Text fontWeight={600}>{CapitalizeEachWord(category)}</Text>
+            </Box>
+          );
+        })}
       </Flex>
 
       {/* Mid Nav Items */}
@@ -70,7 +60,7 @@ const Navbar = () => {
       </Box>
 
       {/* Right Nav Items */}
-      <Flex ml={"auto"} gap={"12px"} alignItems={"center"}>
+      <Flex ml={"auto"} gap={"12px"} alignItems={"center"} paddingRight={"6px"}>
         <Flex gap={"4px"} alignItems={"center"}>
           <BsCartCheck size="25px" />
           <Text fontWeight={600}>Cart</Text>

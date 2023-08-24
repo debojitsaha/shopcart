@@ -16,7 +16,12 @@ import "../styles/variables.scss";
 
 const ProductCard = (item: T_Products) => {
   return (
-    <Card maxW="sm">
+    <Card
+      maxW="sm"
+      _hover={{
+        boxShadow: "1px 3px 8px 1px #94a3b8",
+      }}
+    >
       <CardBody
         style={{
           alignItems: "center",
@@ -37,7 +42,10 @@ const ProductCard = (item: T_Products) => {
           _hover={{ transform: "scale(1.1)" }}
         />
         <Stack mt="6" spacing="3">
-          <Heading size="md">
+          <Heading
+            size="md"
+            _hover={{ textDecor: "underline", cursor: "pointer" }}
+          >
             {item.title.length > 20
               ? item.title.substring(0, 20) + "..."
               : item.title}

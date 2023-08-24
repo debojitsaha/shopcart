@@ -11,7 +11,7 @@ const Home = () => {
     <div className="home">
       {allProducts.data?.map((product: T_Products) => {
         return (
-          <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+          <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))' key={product.id}>
             <ProductCard {...product} />
           </SimpleGrid>
         );

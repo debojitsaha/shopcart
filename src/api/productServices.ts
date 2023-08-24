@@ -9,3 +9,10 @@ export function useGetAllProducts(){
     return res.data as T_Products[];
   })
 }
+
+export function useGetAllCategories(){
+  return useQuery("products/categories",async()=>{
+    const res: AxiosResponse = await api.get("/products/categories");
+    return res.data;
+  })
+}
