@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.home{
+    padding: $marg-md;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: $marg-sm;
+}

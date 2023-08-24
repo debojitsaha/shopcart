@@ -16,9 +16,20 @@ import {
 import { BsCartCheck, BsChevronDown } from "react-icons/bs";
 import { BiSearchAlt, BiUser } from "react-icons/bi";
 
+import "../styles/variables.scss"
+
 const Navbar = () => {
   return (
-    <Flex alignItems={"center"} padding={"8px"}>
+    <Flex
+      alignItems={"center"}
+      padding={"8px"}
+      position={"sticky"}
+      top={0}
+      zIndex={10}
+      backgroundColor={"white"}
+      border={"1px solid #E2E8F0"}
+      boxShadow= {"0px 2px 4px rgba(0, 0, 0, 0.05)"}
+    >
       {/* Left Nav Items */}
       <Flex alignItems={"center"} gap={"12px"}>
         <Flex fontWeight={600} alignItems={"center"} mr={"4"}>

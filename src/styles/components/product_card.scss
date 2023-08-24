@@ -1,0 +1,9 @@
+@import "../variables.scss";
+
+.product_card{
+    border: $border;
+    background-color: red;
+    &:hover{
+        box-sizing: $shadow;
+    }
+}
