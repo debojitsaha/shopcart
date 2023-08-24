@@ -29,7 +29,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <AppState>
           <ChakraProvider>
-            <Navbar />
+            <Navbar />            
             <RouterProvider router={router} fallbackElement={<Loader />} />
           </ChakraProvider>
         </AppState>

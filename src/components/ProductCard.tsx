@@ -11,7 +11,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { T_Products } from "../interfaces/products";
-import "../styles/components/product_card.scss";
 import "../styles/variables.scss";
 
 const ProductCard = (item: T_Products) => {
@@ -39,7 +38,7 @@ const ProductCard = (item: T_Products) => {
           height={"300px"}
           transform={"scale(0.8)"}
           alignSelf="center"
-          _hover={{ transform: "scale(1.1)" }}
+          _hover={{ transform: "scale(1)" }}
         />
         <Stack mt="6" spacing="3">
           <Heading
@@ -57,7 +56,7 @@ const ProductCard = (item: T_Products) => {
                 : item.description
               : "No description available for this product."}
           </Text>
-          <Text color="blue.600" fontSize="2xl">
+          <Text color="#003D29" fontSize="2xl">
             ₹ {item.price}
           </Text>
         </Stack>
@@ -65,10 +64,15 @@ const ProductCard = (item: T_Products) => {
       <Divider borderColor="#94a3b8" />
       <CardFooter>
         <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
+          <Button
+            background={"#003D29"}
+            color={"white"}
+            borderRadius={"24px"}
+            _hover={{ background: "#015539" }}
+          >
+            Buy Now
           </Button>
-          <Button variant="ghost" colorScheme="blue">
+          <Button variant="ghost" color={"#003D29"} borderRadius={"24px"}>
             Add to cart
           </Button>
         </ButtonGroup>
