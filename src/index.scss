@@ -26,6 +26,7 @@
 html,
 body {
   height: inherit !important;
+  overflow-x: hidden;
 }
 
 body {
@@ -391,6 +392,6 @@ body {
   color: $gray-500;
 }
 
-:focus{
+*:focus{
   outline: none;
 }

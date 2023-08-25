@@ -15,7 +15,7 @@ import { BsCartCheck } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { useGetAllCategories } from "../api/productServices";
 import { CapitalizeEachWord } from "../utils/Capitalize";
-
+import { RxHamburgerMenu } from "react-icons/rx";
 import "../styles/variables.scss";
 import { Link } from "react-router-dom";
 import appContext from "../contextApi/appContext";
@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <Flex
       alignItems={"center"}
-      padding={"16px"}
+      padding={{ md: "16px", base: "8px" }}
       position={"sticky"}
       top={0}
       zIndex={10}
@@ -41,7 +41,12 @@ const Navbar = () => {
       <Flex alignItems={"center"} gap={"18px"}>
         <Flex fontWeight={600} alignItems={"center"} mr={"4"}>
           <Link to={"/"}>
-            <Image src={Logo} alt="Logo" width={"40px"} />
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={"40px"}
+              display={{ md: "block", base: "none" }}
+            />
           </Link>
           <Link to={"/"}>
             <Text fontSize={"2xl"}>ShopCart</Text>
@@ -52,6 +57,7 @@ const Navbar = () => {
             return (
               <Link to={`/category/${category}`} key={i}>
                 <Box
+                  display={{ base: "none", md: "block" }}
                   key={i}
                   _hover={{
                     boxShadow: "inset 0 -2px 0 #26283E",
@@ -66,7 +72,12 @@ const Navbar = () => {
       </Flex>
 
       {/* Right Nav Items */}
-      <Flex ml={"auto"} gap={"18px"} alignItems={"center"} paddingRight={"6px"}>
+      <Flex
+        ml={"auto"}
+        gap={{ md: "18px", base: "8px" }}
+        alignItems={"center"}
+        paddingRight={"6px"}
+      >
         <Link to={"/cart"}>
           <Flex gap={"4px"} alignItems={"center"} position={"relative"}>
             <BsCartCheck size="25px" />
@@ -92,12 +103,43 @@ const Navbar = () => {
             p={0}
             cursor={"pointer"}
             leftIcon={<BiUser size="25px" />}
+            display={{ md: "block", base: "none" }}
           >
             <Text>Account</Text>
           </MenuButton>
           <MenuList>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Log out</MenuItem>
+            <MenuItem as={Button}>Register/Login</MenuItem>
+          </MenuList>
+        </Menu>
+        <Menu>
+          <MenuButton
+            color={"#000000"}
+            _hover={{ color: "#26283E", bg: "transparent" }}
+            _active={{ bg: "transparent" }}
+            bg={"transparent"}
+            as={Button}
+            p={0}
+            cursor={"pointer"}
+            display={{ md: "none", base: "block" }}
+          >
+            <RxHamburgerMenu size="25px" />
+          </MenuButton>
+          <MenuList>
+            {categories.data &&
+              categories.data.map((category: string, i: number) => {
+                return (
+                  <MenuItem>
+                    <Link to={`/category/${category}`} key={i}>
+                      <Text fontWeight={600}>
+                        {CapitalizeEachWord(category)}
+                      </Text>
+                    </Link>
+                  </MenuItem>
+                );
+              })}
+            <MenuItem>
+              <Text fontWeight={600}>Profile</Text>
+            </MenuItem>
           </MenuList>
         </Menu>
       </Flex>

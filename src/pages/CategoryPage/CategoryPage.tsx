@@ -89,7 +89,10 @@ const CategoryPage = ({ category }: { category: string }) => {
         {!categoryProducts.isLoading ? (
           <SimpleGrid
             spacing={4}
-            templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
+            templateColumns={{
+              md: "repeat(auto-fill, minmax(350px, 1fr))",
+              base: "repeat(auto-fill, minmax(300px, 1fr))",
+            }}
           >
             {categoryProducts?.data
               ?.filter((product: T_Products) => {

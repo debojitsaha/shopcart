@@ -45,8 +45,8 @@ const ProductCard = (item: T_Products) => {
           src={item.image}
           alt={item.title}
           borderRadius="lg"
-          width={"250px"}
-          height={"300px"}
+          width={{md: "250px", base: "160px"}}
+          height={{md: "300px", base: "200px"}}
           transform={"scale(0.8)"}
           alignSelf="center"
           _hover={{ transform: "scale(1)" }}
