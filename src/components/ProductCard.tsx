@@ -14,13 +14,16 @@ import {
 } from "@chakra-ui/react";
 import { T_Products } from "../interfaces/products";
 import "../styles/variables.scss";
-import { AiFillStar } from "react-icons/ai";
-import { useContext } from "react";
+import { AiFillStar, AiOutlineCheck } from "react-icons/ai";
+import { useContext, useState } from "react";
 import appContext from "../contextApi/appContext";
 
 const ProductCard = (item: T_Products) => {
   /* states for adding items to Cart */
   const { cart, setCart } = useContext(appContext);
+  /* check if the item is already added to cart*/
+  const [itemAdded, setItemAdded] = useState<boolean>(false);
+  
   return (
     <Card
       _hover={{
@@ -88,17 +91,26 @@ const ProductCard = (item: T_Products) => {
           >
             Buy Now
           </Button>
-          <Button
-            variant="ghost"
-            color={"#003D29"}
-            borderRadius={"24px"}
-            onClick={() => {
-              setCart([...cart, item]);
-              setCart([...cart, { ...item, quantity: 1, totalPrice: item.price }]);
-            }}
-          >
-            Add to cart
-          </Button>
+          {!itemAdded ? (
+            <Button
+              variant="ghost"
+              color={"#003D29"}
+              borderRadius={"24px"}
+              onClick={() => {
+                setCart([
+                  ...cart,
+                  { ...item, quantity: 1, totalPrice: item.price },                  
+                ]);
+                setItemAdded(true);
+              }}
+            >
+              Add to cart
+            </Button>
+          ) : (
+            <Button variant="ghost" color={"#003D29"} borderRadius={"24px"} leftIcon={<AiOutlineCheck />}>
+              Item Added to Cart
+            </Button>
+          )}
         </ButtonGroup>
       </CardFooter>
     </Card>
