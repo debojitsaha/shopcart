@@ -19,7 +19,6 @@ import { AiFillStar } from "react-icons/ai";
 const ProductCard = (item: T_Products) => {
   return (
     <Card
-      maxW="sm"
       _hover={{
         boxShadow: "1px 3px 8px 1px #94a3b8",
       }}
@@ -74,7 +73,7 @@ const ProductCard = (item: T_Products) => {
           </Text>
         </Stack>
       </CardBody>
-      <Divider borderColor="#94a3b8" />
+      <Divider borderColor="#f1f5f9" />
       <CardFooter>
         <ButtonGroup spacing="2">
           <Button
