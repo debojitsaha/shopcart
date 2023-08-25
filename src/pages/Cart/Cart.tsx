@@ -55,7 +55,7 @@ const Cart = () => {
                   <Text>
                     {item.title} (x{item.quantity}){" "}
                   </Text>
-                  <Text>{item.price * item.quantity}</Text>
+                  <Text>$ {item.price * item.quantity}</Text>
                 </Flex>
               );
             })}
@@ -69,7 +69,7 @@ const Cart = () => {
             <Flex justifyContent={"space-between"} alignItems={"center"}>
               <Heading size={"sm"}>Total Amount</Heading>
               <Heading size={"sm"}>
-                {cart.reduce(
+                $ {cart.reduce(
                   (sum: number, item: T_Cart) => sum + item.totalPrice,
                   0
                 )}
