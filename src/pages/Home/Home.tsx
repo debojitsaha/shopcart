@@ -24,7 +24,7 @@ const Home = () => {
   const products = useGetAllProducts();
 
   const [allProducts, setallProducts] = useState(products);
-  
+
   /* states to handle modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
   /* states for price range & rating filters */
@@ -32,13 +32,9 @@ const Home = () => {
 
   const handleSort = (sort: string) => {
     if (sort === "asc") {
-      products.data?.sort(
-        (a: T_Products, b: T_Products) => a.price - b.price
-      );
+      products.data?.sort((a: T_Products, b: T_Products) => a.price - b.price);
     } else {
-      products.data?.sort(
-        (a: T_Products, b: T_Products) => b.price - a.price
-      );
+      products.data?.sort((a: T_Products, b: T_Products) => b.price - a.price);
     }
   };
 
@@ -51,15 +47,17 @@ const Home = () => {
       <FilterModal isOpen={isOpen} onClose={onClose} />
       <Box padding={"12px"}>
         <Banner />
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Box
+          display="flex"
+          flexDirection={{ md: "row", base: "column-reverse" }}
+          justifyContent="space-between"
+          alignItems={{ md: "center", base: "flex-start" }}
+          padding={"12px"}
+        >
           <Heading size="lg" justifySelf={"flex-start"} marginTop="6">
             Products for You!
           </Heading>
-          <Box
-            display="flex"
-            gap={"12px"}
-            alignItems="center"
-          >
+          <Box display="flex" gap={"12px"} alignItems="center">
             <Box
               display="flex"
               alignItems="center"

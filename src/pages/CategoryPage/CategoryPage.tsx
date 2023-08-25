@@ -47,8 +47,9 @@ const CategoryPage = ({ category }: { category: string }) => {
       <FilterModal isOpen={isOpen} onClose={onClose} />
       <Box
         display="flex"
+        flexDirection={{md:"row",base:"column-reverse"}}
         justifyContent="space-between"
-        alignItems="center"
+        alignItems={{md:"center",base:"flex-start"}}
         padding={"12px"}
       >
         <Heading size="lg" justifySelf={"flex-start"} marginTop="6">
