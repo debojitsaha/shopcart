@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <Flex
       alignItems={"center"}
-      padding={"8px"}
+      padding={"16px"}
       position={"sticky"}
       top={0}
       zIndex={10}

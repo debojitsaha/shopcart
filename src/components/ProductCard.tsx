@@ -9,9 +9,12 @@ import {
   Button,
   Image,
   Text,
+  Flex,
+  Tag,
 } from "@chakra-ui/react";
 import { T_Products } from "../interfaces/products";
 import "../styles/variables.scss";
+import { AiFillStar } from "react-icons/ai";
 
 const ProductCard = (item: T_Products) => {
   return (
@@ -41,6 +44,16 @@ const ProductCard = (item: T_Products) => {
           _hover={{ transform: "scale(1)" }}
         />
         <Stack mt="6" spacing="3">
+          <Flex alignItems={"center"} gap={"4px"}>
+            <Tag background={"#d0fef0"} fontWeight={600}>
+              <Text>{item.rating.rate}</Text>{" "}
+              <AiFillStar
+                color="#015539"
+                style={{ marginLeft: "4px", marginRight: "4px" }}
+              />
+              <Text> | {item.rating.count}</Text>
+            </Tag>
+          </Flex>
           <Heading
             size="md"
             _hover={{ textDecor: "underline", cursor: "pointer" }}
@@ -49,14 +62,14 @@ const ProductCard = (item: T_Products) => {
               ? item.title.substring(0, 20) + "..."
               : item.title}
           </Heading>
-          <Text>
+          <Text color={"#475569"}>
             {item.description
               ? item.description.length > 60
                 ? item.description.substring(0, 60) + "..."
                 : item.description
               : "No description available for this product."}
           </Text>
-          <Text color="#003D29" fontSize="2xl">
+          <Text color="#003D29" fontSize="2xl" fontWeight={600}>
             ₹ {item.price}
           </Text>
         </Stack>
