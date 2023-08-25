@@ -49,7 +49,7 @@ const FilterModal = ({
           <Text fontWeight={600}>Price Range</Text>
           <RangeSlider
             aria-label={["min", "max"]}
-            defaultValue={[0, 100]}
+            defaultValue={[filters.price.min, filters.price.max]}
             onChangeEnd={(val) => {
               if (val[1] === 100)
                 setFilters({ ...filters, price: { min: val[0], max: 10000 } });

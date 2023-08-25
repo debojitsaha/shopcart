@@ -19,6 +19,7 @@ const Home = () => {
   const allProducts = useGetAllProducts();
   /* states to handle modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
+  /* states for price range & rating filters */
   const { filters } = useContext(appContext);
 
   return (
@@ -50,7 +51,7 @@ const Home = () => {
             templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
           >
             {allProducts?.data
-              ?.filter((product) => {
+              ?.filter((product: T_Products) => {
                 return (
                   product.price >= filters.price.min &&
                   product.price <= filters.price.max &&
