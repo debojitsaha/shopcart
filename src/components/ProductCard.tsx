@@ -69,7 +69,7 @@ const ProductCard = (item: T_Products) => {
               : "No description available for this product."}
           </Text>
           <Text color="#003D29" fontSize="2xl" fontWeight={600}>
-            ₹ {item.price}
+            ${item.price}
           </Text>
         </Stack>
       </CardBody>

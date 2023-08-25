@@ -10,3 +10,14 @@ export interface T_Products {
     count: number;
   };
 }
+
+export interface T_Filters {
+  price: {
+    min: number;
+    max: number;
+  };
+  rating: {
+    min: number;
+    max: number;
+  };
+}

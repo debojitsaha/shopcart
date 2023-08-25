@@ -1,29 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { T_Filters } from "../interfaces/products";
 import AppContext from "./appContext";
 
-const AppState = (props:any) => {
+const AppState = (props: any) => {
   // declare your states here
-  const [user, setUser] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [userProfile, setUserProfile] = useState();
-
-  const fetchUserProfile = async () => {
-    console.log("hello");
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) fetchUserProfile();
-  }, [localStorage.getItem("authToken")]);
+  const [filters, setFilters] = useState<T_Filters>({
+    price: {
+      min: 0,
+      max: 10000,
+    },
+    rating: {
+      min: 1,
+      max: 5,
+    },
+  });
 
   return (
     <AppContext.Provider
       value={{
-        user,
-        setUser,
-        loading,
-        setLoading,
-        userProfile,
-        setUserProfile,
+        // pass your states here
+        filters,
+        setFilters,
       }}
     >
       {props.children}
