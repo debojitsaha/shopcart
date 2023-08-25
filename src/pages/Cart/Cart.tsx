@@ -1,22 +1,16 @@
-import {
-  Divider,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Flex, Grid } from "@chakra-ui/react";
 import appContext from "../../contextApi/appContext";
 import { useContext } from "react";
 import { T_Cart } from "../../interfaces/products";
 import CartProductCard from "../../components/CartProductCard";
 import Empty from "../../utils/Empty";
+import CheckoutBox from "../../components/CheckoutBox";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   /* states for adding items to Cart */
   const { cart } = useContext(appContext);
-  console.log(cart);
+  const navigate= useNavigate()
 
   return (
     <Grid
@@ -36,47 +30,27 @@ const Cart = () => {
         )}
       </Flex>
       {cart.length > 0 && (
-        <GridItem
-          flexDirection={"column"}
-          padding={"32px"}
-          borderRadius={"4px"}
-          boxShadow={"1px 3px 8px 1px #e2e8f0"}
-        >
-          <Heading size={"md"}>Price Details</Heading>
-          <Divider my={4} />
-          <Stack mt={8}>
-            {cart.map((item: T_Cart, i: number) => {
-              return (
-                <Flex
-                  justifyContent={"space-between"}
-                  alignItems={"center"}
-                  key={i}
-                >
-                  <Text>
-                    {item.title} (x{item.quantity}){" "}
-                  </Text>
-                  <Text>$ {item.price * item.quantity}</Text>
-                </Flex>
-              );
-            })}
-          </Stack>
-          <Divider my={4} />
-          <Stack mt={8}>
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
-              <Heading size={"sm"}>Total Items</Heading>
-              <Heading size={"sm"}>{cart.length}</Heading>
-            </Flex>
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
-              <Heading size={"sm"}>Total Amount</Heading>
-              <Heading size={"sm"}>
-                $ {cart.reduce(
-                  (sum: number, item: T_Cart) => sum + item.totalPrice,
-                  0
-                )}
-              </Heading>
-            </Flex>
-          </Stack>
-        </GridItem>
+        <Flex flexDirection={"column"} gap={"7px"}>
+          <CheckoutBox />
+          <Flex alignItems={"center"} gap={"7px"} justifyContent={"flex-end"}>
+            <Button
+              variant={"outline"}
+              color={"#003D29"}
+              _hover={{ borderColor: "#015539" }}
+              onClick={() => navigate("/")}
+            >
+              Continue Shopping
+            </Button>
+            <Button
+              background={"#003D29"}
+              color={"white"}
+              _hover={{ background: "#015539" }}
+              onClick={() => navigate("/checkout")}
+            >
+              Place Order
+            </Button>
+          </Flex>
+        </Flex>
       )}
     </Grid>
   );

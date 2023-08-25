@@ -17,13 +17,15 @@ import "../styles/variables.scss";
 import { AiFillStar, AiOutlineCheck } from "react-icons/ai";
 import { useContext, useState } from "react";
 import appContext from "../contextApi/appContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = (item: T_Products) => {
   /* states for adding items to Cart */
   const { cart, setCart } = useContext(appContext);
   /* check if the item is already added to cart*/
   const [itemAdded, setItemAdded] = useState<boolean>(false);
-  
+  const navigate = useNavigate();
+
   return (
     <Card
       _hover={{
@@ -88,6 +90,13 @@ const ProductCard = (item: T_Products) => {
             color={"white"}
             borderRadius={"24px"}
             _hover={{ background: "#015539" }}
+            onClick={() => {
+              setCart([
+                ...cart,
+                { ...item, quantity: 1, totalPrice: item.price },
+              ]);
+              navigate("/checkout");
+            }}
           >
             Buy Now
           </Button>
@@ -99,7 +108,7 @@ const ProductCard = (item: T_Products) => {
               onClick={() => {
                 setCart([
                   ...cart,
-                  { ...item, quantity: 1, totalPrice: item.price },                  
+                  { ...item, quantity: 1, totalPrice: item.price },
                 ]);
                 setItemAdded(true);
               }}
@@ -107,7 +116,12 @@ const ProductCard = (item: T_Products) => {
               Add to cart
             </Button>
           ) : (
-            <Button variant="ghost" color={"#003D29"} borderRadius={"24px"} leftIcon={<AiOutlineCheck />}>
+            <Button
+              variant="ghost"
+              color={"#003D29"}
+              borderRadius={"24px"}
+              leftIcon={<AiOutlineCheck />}
+            >
               Item Added to Cart
             </Button>
           )}
