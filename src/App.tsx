@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar";
 import { QueryClient, QueryClientProvider } from "react-query";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import Cart from "./pages/Cart/Cart";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,10 @@ function App() {
     {
       path: "/category/women's clothing",
       element: <CategoryPage category="women's clothing" />,
+    },
+    {
+      path: "/cart",
+      element: <Cart />,
     },
   ];
 

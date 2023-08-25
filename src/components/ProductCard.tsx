@@ -15,8 +15,12 @@ import {
 import { T_Products } from "../interfaces/products";
 import "../styles/variables.scss";
 import { AiFillStar } from "react-icons/ai";
+import { useContext } from "react";
+import appContext from "../contextApi/appContext";
 
 const ProductCard = (item: T_Products) => {
+  /* states for adding items to Cart */
+  const { cart, setCart } = useContext(appContext);
   return (
     <Card
       _hover={{
@@ -84,7 +88,15 @@ const ProductCard = (item: T_Products) => {
           >
             Buy Now
           </Button>
-          <Button variant="ghost" color={"#003D29"} borderRadius={"24px"}>
+          <Button
+            variant="ghost"
+            color={"#003D29"}
+            borderRadius={"24px"}
+            onClick={() => {
+              setCart([...cart, item]);
+              setCart([...cart, { ...item, quantity: 1, totalPrice: item.price }]);
+            }}
+          >
             Add to cart
           </Button>
         </ButtonGroup>

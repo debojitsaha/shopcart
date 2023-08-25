@@ -21,3 +21,8 @@ export interface T_Filters {
     max: number;
   };
 }
+
+export interface T_Cart extends T_Products {
+  quantity: number;
+  totalPrice: number;
+}

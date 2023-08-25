@@ -1,12 +1,10 @@
 import Logo from "../assets/logo.webp";
 import {
+  Badge,
   Box,
   Button,
   Flex,
   Image,
-  Input,
-  InputGroup,
-  InputRightAddon,
   Menu,
   MenuButton,
   MenuItem,
@@ -14,15 +12,19 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { BsCartCheck } from "react-icons/bs";
-import { BiSearchAlt, BiUser } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import { useGetAllCategories } from "../api/productServices";
 import { CapitalizeEachWord } from "../utils/Capitalize";
 
 import "../styles/variables.scss";
 import { Link } from "react-router-dom";
+import appContext from "../contextApi/appContext";
+import { useContext } from "react";
 
 const Navbar = () => {
   const categories = useGetAllCategories();
+  /* to get the no. of items in the Cart */
+  const { cart } = useContext(appContext);
 
   return (
     <Flex
@@ -63,20 +65,23 @@ const Navbar = () => {
           })}
       </Flex>
 
-      {/* Mid Nav Items */}
-      <Box ml={"auto"}>
-        <InputGroup>
-          <Input placeholder="Search.." />
-          <InputRightAddon children={<BiSearchAlt />} />
-        </InputGroup>
-      </Box>
-
       {/* Right Nav Items */}
       <Flex ml={"auto"} gap={"18px"} alignItems={"center"} paddingRight={"6px"}>
-        <Flex gap={"4px"} alignItems={"center"}>
-          <BsCartCheck size="25px" />
-          <Text fontWeight={600}>Cart</Text>
-        </Flex>
+        <Link to={"/cart"}>
+          <Flex gap={"4px"} alignItems={"center"} position={"relative"}>
+            <BsCartCheck size="25px" />
+            <Badge
+              colorScheme="red"
+              variant={"solid"}
+              position={"absolute"}
+              top={"-8px"}
+              left={"12px"}
+            >
+              {cart.length}
+            </Badge>
+            <Text fontWeight={600}>Cart</Text>
+          </Flex>
+        </Link>
         <Menu>
           <MenuButton
             color={"#000000"}

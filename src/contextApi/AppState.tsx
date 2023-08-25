@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { T_Filters } from "../interfaces/products";
+import { T_Cart, T_Filters } from "../interfaces/products";
 import AppContext from "./appContext";
 
 const AppState = (props: any) => {
@@ -14,6 +14,7 @@ const AppState = (props: any) => {
       max: 5,
     },
   });
+  const [cart, setCart] = useState<T_Cart[]>([]);
 
   return (
     <AppContext.Provider
@@ -21,6 +22,8 @@ const AppState = (props: any) => {
         // pass your states here
         filters,
         setFilters,
+        cart,
+        setCart,
       }}
     >
       {props.children}

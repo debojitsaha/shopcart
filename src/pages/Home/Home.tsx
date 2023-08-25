@@ -23,12 +23,12 @@ import { useContext, useEffect, useState } from "react";
 const Home = () => {
   const products = useGetAllProducts();
 
-  const [allProducts, setallProducts] = useState(products);
+  const [allProducts, setallProducts] = useState(products);  
 
   /* states to handle modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
   /* states for price range & rating filters */
-  const { filters } = useContext(appContext);
+  const { filters } = useContext(appContext);  
 
   const handleSort = (sort: string) => {
     if (sort === "asc") {
@@ -92,7 +92,7 @@ const Home = () => {
         {!allProducts.isLoading ? (
           <SimpleGrid
             spacing={4}
-            templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+            templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
           >
             {allProducts?.data
               ?.filter((product: T_Products) => {
