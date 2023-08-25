@@ -1,5 +1,4 @@
 import { Spinner } from "@chakra-ui/react";
-import React from "react";
 
 const Loader = () => {
   return (
@@ -9,6 +8,10 @@ const Loader = () => {
       emptyColor="gray.200"
       color="blue.500"
       size="xl"
+      margin="auto"
+      display="flex"
+      justifyContent="center"
+      alignItems={"center"}
     />
   );
 };
