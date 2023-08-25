@@ -1,6 +1,11 @@
 import {
   Box,
+  Button,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   SimpleGrid,
   Text,
   useDisclosure,
@@ -10,17 +15,36 @@ import ProductCard from "../../components/ProductCard";
 import { T_Products } from "../../interfaces/products";
 import Banner from "../../components/Banner";
 import Loader from "../../utils/Loader";
-import { BiFilterAlt } from "react-icons/bi";
+import { BiFilterAlt, BiSort } from "react-icons/bi";
 import FilterModal from "../../components/FilterModal";
 import appContext from "../../contextApi/appContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Home = () => {
-  const allProducts = useGetAllProducts();
+  const products = useGetAllProducts();
+
+  const [allProducts, setallProducts] = useState(products);
+  
   /* states to handle modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
   /* states for price range & rating filters */
   const { filters } = useContext(appContext);
+
+  const handleSort = (sort: string) => {
+    if (sort === "asc") {
+      products.data?.sort(
+        (a: T_Products, b: T_Products) => a.price - b.price
+      );
+    } else {
+      products.data?.sort(
+        (a: T_Products, b: T_Products) => b.price - a.price
+      );
+    }
+  };
+
+  useEffect(() => {
+    setallProducts(products);
+  }, [products]);
 
   return (
     <>
@@ -33,14 +57,36 @@ const Home = () => {
           </Heading>
           <Box
             display="flex"
+            gap={"12px"}
             alignItems="center"
-            cursor={"pointer"}
-            onClick={onOpen}
           >
-            <Text fontWeight={600} fontSize={"lg"}>
-              Filters
-            </Text>
-            <BiFilterAlt size="25px" />
+            <Box
+              display="flex"
+              alignItems="center"
+              cursor={"pointer"}
+              onClick={onOpen}
+              as={Button}
+            >
+              <Text fontWeight={600} fontSize={"lg"}>
+                Filters
+              </Text>
+              <BiFilterAlt size="25px" />
+            </Box>
+            <Box display="flex" alignItems="center" cursor={"pointer"}>
+              <Menu>
+                <MenuButton as={Button} rightIcon={<BiSort size="25px" />}>
+                  Sort
+                </MenuButton>
+                <MenuList>
+                  <MenuItem onClick={() => handleSort("asc")}>
+                    Low to High
+                  </MenuItem>
+                  <MenuItem onClick={() => handleSort("desc")}>
+                    High to Low
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
           </Box>
         </Box>
       </Box>

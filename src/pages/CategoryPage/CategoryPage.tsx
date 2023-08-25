@@ -1,26 +1,46 @@
 import {
   Box,
+  Button,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   SimpleGrid,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useGetCategoryProduct } from "../../api/productServices";
 import ProductCard from "../../components/ProductCard";
-import { T_Products } from "../../interfaces/products";
 import { Capitalize } from "../../utils/Capitalize";
 import Loader from "../../utils/Loader";
 import FilterModal from "../../components/FilterModal";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import appContext from "../../contextApi/appContext";
-import { BiFilterAlt } from "react-icons/bi";
+import { BiFilterAlt, BiSort } from "react-icons/bi";
+import { T_Products } from "../../interfaces/products";
 
 const CategoryPage = ({ category }: { category: string }) => {
-  const categoryProducts = useGetCategoryProduct(category);
+  const products = useGetCategoryProduct(category);
+
+  const [categoryProducts, setCategoryProducts] = useState(products);
+
   /* states to handle modal */
   const { isOpen, onOpen, onClose } = useDisclosure();
   /* states for price range & rating filters */
   const { filters } = useContext(appContext);
+
+  const handleSort = (sort: string) => {
+    if (sort === "asc") {
+      products.data?.sort((a: T_Products, b: T_Products) => a.price - b.price);
+    } else {
+      products.data?.sort((a: T_Products, b: T_Products) => b.price - a.price);
+    }
+  };
+
+  useEffect(() => {
+    setCategoryProducts(products);
+  }, [products]);
 
   return (
     <>
@@ -34,16 +54,34 @@ const CategoryPage = ({ category }: { category: string }) => {
         <Heading size="lg" justifySelf={"flex-start"} marginTop="6">
           {Capitalize(category)} for You!
         </Heading>
-        <Box
-          display="flex"
-          alignItems="center"
-          cursor={"pointer"}
-          onClick={onOpen}
-        >
-          <Text fontWeight={600} fontSize={"lg"}>
-            Filters
-          </Text>
-          <BiFilterAlt size="25px" />
+        <Box display="flex" gap={"12px"} alignItems="center">
+          <Box
+            display="flex"
+            alignItems="center"
+            cursor={"pointer"}
+            onClick={onOpen}
+            as={Button}
+          >
+            <Text fontWeight={600} fontSize={"lg"}>
+              Filters
+            </Text>
+            <BiFilterAlt size="25px" />
+          </Box>
+          <Box display="flex" alignItems="center" cursor={"pointer"}>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<BiSort size="25px" />}>
+                Sort
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => handleSort("asc")}>
+                  Price Low to High
+                </MenuItem>
+                <MenuItem onClick={() => handleSort("desc")}>
+                  Price High to Low
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
         </Box>
       </Box>
       <Box padding={"12px"}>
