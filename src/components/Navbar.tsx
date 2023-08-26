@@ -56,14 +56,14 @@ const Navbar = () => {
         </Flex>
         <Link
           to={"/"}
-          className={separateWords(location.pathname) === "/" ? "active" : ""}
         >
           <Box
-            display={{ base: "none", lg: "block" }}
+            display={{ base: "none", lg: "inherit" }}
             _hover={{
               boxShadow: "inset 0 -2px 0 #015539",
               cursor: "pointer",
             }}
+            className={separateWords(location.pathname) === "/" ? "active" : ""}
           >
             <Text fontWeight={600}>Home</Text>
           </Box>
@@ -74,11 +74,6 @@ const Navbar = () => {
               <Link
                 to={`/category/${category}`}
                 key={i}
-                className={
-                  separateWords(location.pathname) === `/category/${category}`
-                    ? "active"
-                    : ""
-                }
               >
                 <Box
                   display={{ base: "none", lg: "block" }}
@@ -87,6 +82,11 @@ const Navbar = () => {
                     boxShadow: "inset 0 -2px 0 #015539",
                     cursor: "pointer",
                   }}
+                  className={
+                    separateWords(location.pathname) === `/category/${category}`
+                      ? "active"
+                      : ""
+                  }
                 >
                   <Text fontWeight={600}>{CapitalizeEachWord(category)}</Text>
                 </Box>
