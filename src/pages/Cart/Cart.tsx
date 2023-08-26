@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   /* states for adding items to Cart */
   const { cart } = useContext(appContext);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
   return (
     <Grid
@@ -32,24 +32,24 @@ const Cart = () => {
       {cart.length > 0 && (
         <Flex flexDirection={"column"} gap={"7px"}>
           <CheckoutBox />
-          <Flex alignItems={"center"} gap={"7px"} justifyContent={"flex-end"}>
-            <Button
-              variant={"outline"}
-              color={"#003D29"}
-              _hover={{ borderColor: "#015539" }}
-              onClick={() => navigate("/")}
-            >
-              Continue Shopping
-            </Button>
-            <Button
-              background={"#003D29"}
-              color={"white"}
-              _hover={{ background: "#015539" }}
-              onClick={() => navigate("/checkout")}
-            >
-              Place Order
-            </Button>
-          </Flex>
+          <Grid gap={"12px"} gridTemplateColumns={"repeat(2, 1fr)"}>
+              <Button
+                variant={"outline"}
+                color={"#003D29"}
+                borderColor="#015539"
+                onClick={() => navigate("/")}
+              >
+                Continue Shopping
+              </Button>
+              <Button
+                background={"#003D29"}
+                color={"white"}
+                _hover={{ background: "#015539" }}
+                onClick={() => navigate("/checkout")}
+              >
+                Place Order
+              </Button>
+          </Grid>
         </Flex>
       )}
     </Grid>

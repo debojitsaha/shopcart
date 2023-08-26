@@ -37,11 +37,14 @@ const Checkout = () => {
       {cart.length > 0 && (
         <Flex flexDirection={"column"} gap={"7px"}>
           <CheckoutBox />
-          <Flex alignItems={"center"} gap={"7px"} justifyContent={"flex-end"}>
+          <Grid
+            gap={"12px"}
+            gridTemplateColumns={"repeat(auto-fit, minmax(300px, 1fr))"}
+          >
             <Button
               variant={"outline"}
               color={"003D29"}
-              _hover={{ borderColor: "#015539" }}
+              borderColor="#015539"
               onClick={() => navigate("/cart")}
             >
               Go To Cart
@@ -66,7 +69,7 @@ const Checkout = () => {
             >
               Pay Now
             </Button>
-          </Flex>
+          </Grid>
         </Flex>
       )}
     </Grid>
