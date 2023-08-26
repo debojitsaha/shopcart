@@ -86,7 +86,7 @@ const Product = () => {
                     ]);
                     setItemAdded(true);
                   }}
-                  borderColor= "#015539"
+                  borderColor="#015539"
                 >
                   Add to cart
                 </Button>

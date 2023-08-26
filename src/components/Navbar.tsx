@@ -54,9 +54,7 @@ const Navbar = () => {
             <Text fontSize={"2xl"}>ShopCart</Text>
           </Link>
         </Flex>
-        <Link
-          to={"/"}
-        >
+        <Link to={"/"}>
           <Box
             display={{ base: "none", lg: "inherit" }}
             _hover={{
@@ -71,10 +69,7 @@ const Navbar = () => {
         {categories.data &&
           categories.data.map((category: string, i: number) => {
             return (
-              <Link
-                to={`/category/${category}`}
-                key={i}
-              >
+              <Link to={`/category/${category}`} key={i}>
                 <Box
                   display={{ base: "none", lg: "block" }}
                   key={i}

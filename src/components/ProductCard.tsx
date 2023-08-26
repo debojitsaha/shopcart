@@ -31,9 +31,6 @@ const ProductCard = (item: T_Products) => {
       _hover={{
         boxShadow: "1px 3px 8px 1px #94a3b8",
       }}
-      onClick={() => {
-        navigate(`/product/${item.id}`);
-      }}
     >
       <CardBody
         style={{
@@ -42,6 +39,9 @@ const ProductCard = (item: T_Products) => {
           flexDirection: "column",
           border: "1px solid #E2E8F0",
           borderRadius: "10px 10px 0 0",
+        }}
+        onClick={() => {
+          navigate(`/product/${item.id}`);
         }}
       >
         <Image
