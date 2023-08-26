@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
+import Product from "./pages/Product/Product";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,10 @@ function App() {
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/product/:id",
+      element: <Product />,
     },
     {
       path: "/checkout",

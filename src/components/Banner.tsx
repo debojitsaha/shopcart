@@ -1,7 +1,10 @@
 import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import BannerImage from "../assets/banner.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       backgroundColor={"#fbf0e4"}
@@ -34,6 +37,9 @@ const Banner = () => {
           color={"white"}
           borderRadius={"24px"}
           _hover={{ background: "#015539" }}
+          onClick={() => {
+            navigate("/product/1");
+          }}
         >
           Buy Now
         </Button>

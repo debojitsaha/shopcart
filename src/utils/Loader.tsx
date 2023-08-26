@@ -12,6 +12,7 @@ const Loader = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
+      marginY={"60px"}
     />
   );
 };

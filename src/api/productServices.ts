@@ -10,6 +10,13 @@ export function useGetAllProducts() {
   });
 }
 
+export function useGetSpecificProduct(id:string|undefined) {
+  return useQuery(`products/${id}`, async () => {
+    const res: AxiosResponse = await api.get(`products/${id}`);
+    return res.data as T_Products;
+  });
+}
+
 export function useGetAllCategories() {
   return useQuery("products/categories", async () => {
     const res: AxiosResponse = await api.get("/products/categories");

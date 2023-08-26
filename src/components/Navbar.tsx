@@ -58,7 +58,15 @@ const Navbar = () => {
           to={"/"}
           className={separateWords(location.pathname) === "/" ? "active" : ""}
         >
-          <Text fontWeight={600}>Home</Text>
+          <Box
+            display={{ base: "none", lg: "block" }}
+            _hover={{
+              boxShadow: "inset 0 -2px 0 #015539",
+              cursor: "pointer",
+            }}
+          >
+            <Text fontWeight={600}>Home</Text>
+          </Box>
         </Link>
         {categories.data &&
           categories.data.map((category: string, i: number) => {
@@ -76,7 +84,7 @@ const Navbar = () => {
                   display={{ base: "none", lg: "block" }}
                   key={i}
                   _hover={{
-                    boxShadow: "inset 0 -2px 0 #26283E",
+                    boxShadow: "inset 0 -2px 0 #015539",
                     cursor: "pointer",
                   }}
                 >

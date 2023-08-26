@@ -31,6 +31,9 @@ const ProductCard = (item: T_Products) => {
       _hover={{
         boxShadow: "1px 3px 8px 1px #94a3b8",
       }}
+      onClick={() => {
+        navigate(`/product/${item.id}`);
+      }}
     >
       <CardBody
         style={{
@@ -45,8 +48,8 @@ const ProductCard = (item: T_Products) => {
           src={item.image}
           alt={item.title}
           borderRadius="lg"
-          width={{md: "250px", base: "160px"}}
-          height={{md: "300px", base: "200px"}}
+          width={{ md: "250px", base: "160px" }}
+          height={{ md: "300px", base: "200px" }}
           transform={"scale(0.8)"}
           alignSelf="center"
           _hover={{ transform: "scale(1)" }}
@@ -64,7 +67,11 @@ const ProductCard = (item: T_Products) => {
           </Flex>
           <Heading
             size="md"
-            _hover={{ textDecor: "underline", cursor: "pointer" }}
+            _hover={{
+              textDecor: "underline",
+              cursor: "pointer",
+              color: "#015539",
+            }}
           >
             {item.title.length > 20
               ? item.title.substring(0, 20) + "..."
