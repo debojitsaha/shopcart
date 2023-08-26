@@ -1,6 +1,6 @@
 # E-Commerce Website Frontend : ShopCart
 
-This project, ShopCart, is a frontend implementation of an e-commerce website using React and Chakra UI where data is fetched from Fake Store API.
+This project, ShopCart, is a frontend implementation of an e-commerce website using React Typescript and Chakra UI where data is fetched from Fake Store API.
 
 ## Features
 
