@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useGetCategoryProduct } from "../../api/productServices";
 import ProductCard from "../../components/ProductCard";
-import { Capitalize } from "../../utils/Capitalize";
+import { Capitalize } from "../../utils/modifyWords";
 import Loader from "../../utils/Loader";
 import FilterModal from "../../components/FilterModal";
 import { useContext, useEffect, useState } from "react";

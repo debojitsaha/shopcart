@@ -19,10 +19,14 @@ const Banner = () => {
         gap={"12px"}
         padding={"14"}
       >
-        <Heading as="h2" size="2xl" color="#003D29" mt="10">
+        <Heading as="h2" size="xl" color="#003D29" mt={{ base: "5", md: "10" }}>
           Welcome to the store
         </Heading>
-        <Text color="#003D29" fontSize="2xl">
+        <Text
+          color="#003D29"
+          fontSize={{ base: "xl", md: "2xl" }}
+          mt={{ base: "2", md: "3" }}
+        >
           Get the best products at the best prices at ShopCart.
         </Text>
         <Button

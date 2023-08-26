@@ -14,10 +14,10 @@ import {
 import { BsCartCheck } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { useGetAllCategories } from "../api/productServices";
-import { CapitalizeEachWord } from "../utils/Capitalize";
+import { CapitalizeEachWord, separateWords } from "../utils/modifyWords";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "../styles/variables.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import appContext from "../contextApi/appContext";
 import { useContext } from "react";
 
@@ -25,6 +25,8 @@ const Navbar = () => {
   const categories = useGetAllCategories();
   /* to get the no. of items in the Cart */
   const { cart } = useContext(appContext);
+  /* to get the current location */
+  const location = useLocation();
 
   return (
     <Flex
@@ -45,19 +47,33 @@ const Navbar = () => {
               src={Logo}
               alt="Logo"
               width={"40px"}
-              display={{ md: "block", base: "none" }}
+              display={{ lg: "block", base: "none" }}
             />
           </Link>
           <Link to={"/"}>
             <Text fontSize={"2xl"}>ShopCart</Text>
           </Link>
         </Flex>
+        <Link
+          to={"/"}
+          className={separateWords(location.pathname) === "/" ? "active" : ""}
+        >
+          <Text fontWeight={600}>Home</Text>
+        </Link>
         {categories.data &&
           categories.data.map((category: string, i: number) => {
             return (
-              <Link to={`/category/${category}`} key={i}>
+              <Link
+                to={`/category/${category}`}
+                key={i}
+                className={
+                  separateWords(location.pathname) === `/category/${category}`
+                    ? "active"
+                    : ""
+                }
+              >
                 <Box
-                  display={{ base: "none", md: "block" }}
+                  display={{ base: "none", lg: "block" }}
                   key={i}
                   _hover={{
                     boxShadow: "inset 0 -2px 0 #26283E",
@@ -103,7 +119,7 @@ const Navbar = () => {
             p={0}
             cursor={"pointer"}
             leftIcon={<BiUser size="25px" />}
-            display={{ md: "block", base: "none" }}
+            display={{ md: "inherit", base: "none" }}
           >
             <Text>Account</Text>
           </MenuButton>
@@ -120,7 +136,7 @@ const Navbar = () => {
             as={Button}
             p={0}
             cursor={"pointer"}
-            display={{ md: "none", base: "block" }}
+            display={{ lg: "none", base: "block" }}
           >
             <RxHamburgerMenu size="25px" />
           </MenuButton>
@@ -128,8 +144,8 @@ const Navbar = () => {
             {categories.data &&
               categories.data.map((category: string, i: number) => {
                 return (
-                  <MenuItem>
-                    <Link to={`/category/${category}`} key={i}>
+                  <MenuItem key={i}>
+                    <Link to={`/category/${category}`}>
                       <Text fontWeight={600}>
                         {CapitalizeEachWord(category)}
                       </Text>
@@ -137,7 +153,7 @@ const Navbar = () => {
                   </MenuItem>
                 );
               })}
-            <MenuItem>
+            <MenuItem display={{ md: "none", base: "block" }}>
               <Text fontWeight={600}>Profile</Text>
             </MenuItem>
           </MenuList>
